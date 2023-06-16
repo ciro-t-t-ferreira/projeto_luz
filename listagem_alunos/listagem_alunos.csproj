@@ -306,6 +306,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Conexao\IConexaoBD.cs" />
     <Compile Include="Model\Aluno.cs" />
     <Compile Include="..\..\Aula 1\RelayCommand.cs">
       <Link>Tools\RelayCommand.cs</Link>

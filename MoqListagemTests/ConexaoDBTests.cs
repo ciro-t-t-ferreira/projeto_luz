@@ -20,8 +20,36 @@ namespace MoqListagemTests
             using(var mock = AutoMock.GetLoose()) //Argumento tem que ser do tipo IDiposable
             {
                 mock.Mock<ConexaoBD>() //o que eu coloco no argumento do <>? Só aceita interfaace? 
-                    .Setup(x => x.ReadEscola());
+                    .Setup(x => x.ReadEscola())
+                    .Returns(AmostraEscolas());
+
+                var cls = mock.Create<ConexaoBD>();
+                var expected = AmostraEscolas();
+                var actual = cls.ReadEscola();
+
+                Assert.True(actual != null);
+                Assert.Equal(expected.Count, actual.Count);
             }
+
+        }
+        private List<Escola> AmostraEscolas()
+        {
+            List<Escola> output = new List<Escola>()
+            {
+                new Escola
+                {
+                    Id = 1,
+                    Nome = "Puríssimo"
+                },
+
+                new Escola
+                {
+                    Id = 2,
+                    Nome = "Objetivo"
+                },
+            };
+            return output;
+
         }
     }
 }

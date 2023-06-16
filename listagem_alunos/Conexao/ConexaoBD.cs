@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using listagem_alunos;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Windows.Forms;
 
 namespace listagem_alunos
 {
-    public class ConexaoBD
+    public class ConexaoBD: IConexaoBD
     {
         
         
