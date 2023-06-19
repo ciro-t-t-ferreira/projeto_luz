@@ -14,14 +14,35 @@ namespace MoqListagemTests
     {
         [Fact]
 
-        public void test()
+        public void ReadEscola_test()
         {
             
-            using(var mock = AutoMock.GetLoose()) //Argumento tem que ser do tipo IDiposable
+            using(var mock = AutoMock.GetLoose()) 
             {
-                mock.Mock<ConexaoBD>() //o que eu coloco no argumento do <>? Só aceita interfaace? 
+                mock.Mock<IConexaoBD>() //no exemplo do TC o objeto que entra no x no código dele é uma "instanciação" direta da interface, no meu é um objeto que implementa a interface
                     .Setup(x => x.ReadEscola())
                     .Returns(AmostraEscolas());
+
+                
+                var cls = mock.Create<ConexaoBD>();
+                var expected = AmostraEscolas();
+                var actual = cls.ReadEscola();
+
+                Assert.True(actual != null);
+                //Assert.Equal(expected.Count, actual.Count);
+            }
+
+        }
+
+        public void AddEscola_test()
+        {
+
+            using (var mock = AutoMock.GetLoose())
+            {
+                mock.Mock<IConexaoBD>() //no exemplo do TC o objeto que entra no x no código dele é uma "instanciação" direta da interface, no meu é um objeto que implementa a interface
+                    .Setup(x => x.ReadEscola())
+                    .Returns(AmostraEscolas());
+
 
                 var cls = mock.Create<ConexaoBD>();
                 var expected = AmostraEscolas();
@@ -32,6 +53,7 @@ namespace MoqListagemTests
             }
 
         }
+
         private List<Escola> AmostraEscolas()
         {
             List<Escola> output = new List<Escola>()
