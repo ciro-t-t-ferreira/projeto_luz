@@ -14,13 +14,13 @@ namespace listagem_alunos
     
     public class Aluno : INotifyPropertyChanged
     {
-        
+
+        private int id;
         private string nome;
         private int idade;
         private string serie;
         private string escola;
-        private int id;
-                      
+                              
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -67,6 +67,12 @@ namespace listagem_alunos
             this.escola = escola;
         }
 
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
         public string Nome 
         {
             get { return nome; } 
@@ -79,8 +85,7 @@ namespace listagem_alunos
             set { idade = value;}
             
         }
-
-       
+               
         public string Serie
         {
             get { return serie; }
@@ -93,11 +98,7 @@ namespace listagem_alunos
             set { escola = value; }
         }
 
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        
 
         private void Notificar(string propertyName)
         {
